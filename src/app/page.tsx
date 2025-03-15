@@ -2,30 +2,15 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { UserData, userDataSchema } from "@/zodSchema";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { SubmitForm } from "@/actions";
 import { toast } from "sonner";
+
+import { SubmitForm } from "@/actions";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Form } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+import { FormInput } from "@/components/form-input";
 
 export default function HomePage() {
   const form = useForm<UserData>({
@@ -60,58 +45,26 @@ export default function HomePage() {
               onSubmit={form.handleSubmit(onSubmit)}
               className="flex flex-col gap-4"
             >
-              <FormField
+              <FormInput
                 control={form.control}
                 name="id"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Id</FormLabel>
-                    <FormControl>
-                      <Input type="number" placeholder="id" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
+                label="Id"
+                placeholder="id"
+                type="number"
               />
-
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input type="text" placeholder="Name" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
+              <FormInput control={form.control} name="name" label="Name" />
+              <FormInput
                 control={form.control}
                 name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input type="email" placeholder="Email" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
+                label="Email"
+                type="email"
               />
-
-              <FormField
+              <FormInput
                 control={form.control}
                 name="age"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Age</FormLabel>
-                    <FormControl>
-                      <Input type="number" placeholder="Age" {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
+                label="Age"
+                type="number"
               />
-
               <Button type="submit">Submit</Button>
             </form>
           </Form>
